@@ -6,7 +6,7 @@ const refEl = {
   textArea: document.querySelector('textarea'),
 };
 const STORAGE_KEY = 'feedBack-form-state';
-const formData = {};
+let formData = {};
 
 rescureMessage();
 
@@ -28,8 +28,9 @@ function onFormSubmit(evt) {
 function rescureMessage() {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
   if (savedMessage) {
-    const pasrsedSav = JSON.parse(savedMessage);
-    refEl.textArea.value = pasrsedSav.message;
-    refEl.email.value = pasrsedSav.email;
+    const pasrsedMessage = JSON.parse(savedMessage);
+    formData = pasrsedMessage;
+    refEl.textArea.value = pasrsedMessage.message;
+    refEl.email.value = pasrsedMessage.email;
   }
 }
