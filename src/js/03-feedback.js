@@ -25,6 +25,7 @@ function onFormSubmit(evt) {
     evt.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
     console.log(formData);
+    formData = {};
     return;
   }
   alert('Для відправки повідомлення заповніть усі поля! Дякую');
@@ -35,7 +36,11 @@ function rescureMessage() {
   if (savedMessage) {
     const pasrsedMessage = JSON.parse(savedMessage);
     formData = pasrsedMessage;
-    refEl.textArea.value = pasrsedMessage.message;
-    refEl.email.value = pasrsedMessage.email;
+    if (pasrsedMessage.message !== undefined) {
+      refEl.textArea.value = pasrsedMessage.message;
+    }
+    if (pasrsedMessage.email !== undefined) {
+      refEl.email.value = pasrsedMessage.email;
+    }
   }
 }
