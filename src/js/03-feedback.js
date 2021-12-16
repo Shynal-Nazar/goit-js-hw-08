@@ -20,9 +20,14 @@ function onTextAreaInput(evt) {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(formData);
-  evt.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
+
+  if (refEl.textArea.value && refEl.email.value !== '') {
+    evt.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+    console.log(formData);
+    return;
+  }
+  alert('Для відправки повідомлення заповніть усі поля! Дякую');
 }
 
 function rescureMessage() {
